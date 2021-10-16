@@ -1,5 +1,4 @@
-/*----------- Game State Data ----------*/
-
+/* Game State Information */
 const board = [
     null, 0, null, 1, null, 2, null, 3,
     4, null, 5, null, 6, null, 7, null,
@@ -11,9 +10,8 @@ const board = [
     20, null, 21, null, 22, null, 23, null
 ]
 
-/*---------- Cached Variables ----------*/
-
-// parses pieceId's and returns the index of that piece's place on the board
+/* Cached Variables */
+/* Parses piece ID's and returns index of place on board */
 let findPiece = function (pieceId) {
     let parsed = parseInt(pieceId);
     return board.indexOf(parsed);
@@ -21,8 +19,8 @@ let findPiece = function (pieceId) {
 
 // DOM referenes
 const cells = document.querySelectorAll("td");
-let redsPieces = document.querySelectorAll("p");
-let blacksPieces = document.querySelectorAll("span")
+let redPieces = document.querySelectorAll("p");
+let blackPieces = document.querySelectorAll("span")
 const redTurnText = document.querySelectorAll(".red-turn-text");
 const blackTurntext = document.querySelectorAll(".black-turn-text");
 const divider = document.querySelector("#divider")
@@ -53,12 +51,12 @@ let selectedPiece = {
 // initialize event listeners on pieces
 function givePiecesEventListeners() {
     if (turn) {
-        for (let i = 0; i < redsPieces.length; i++) {
-            redsPieces[i].addEventListener("click", getPlayerPieces);
+        for (let i = 0; i < redPieces.length; i++) {
+            redPieces[i].addEventListener("click", getPlayerPieces);
         }
     } else {
-        for (let i = 0; i < blacksPieces.length; i++) {
-            blacksPieces[i].addEventListener("click", getPlayerPieces);
+        for (let i = 0; i < blackPieces.length; i++) {
+            blackPieces[i].addEventListener("click", getPlayerPieces);
         }
     }
 }
@@ -261,18 +259,18 @@ function makeMove(number) {
     if (turn) {
         if (selectedPiece.isKing) {
             cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class="red-piece king" id="${selectedPiece.pieceId}"></p>`;
-            redsPieces = document.querySelectorAll("p");
+            redPieces = document.querySelectorAll("p");
         } else {
             cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class="red-piece" id="${selectedPiece.pieceId}"></p>`;
-            redsPieces = document.querySelectorAll("p");
+            redPieces = document.querySelectorAll("p");
         }
     } else {
         if (selectedPiece.isKing) {
             cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class="black-piece king" id="${selectedPiece.pieceId}"></span>`;
-            blacksPieces = document.querySelectorAll("span");
+            blackPieces = document.querySelectorAll("span");
         } else {
             cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class="black-piece" id="${selectedPiece.pieceId}"></span>`;
-            blacksPieces = document.querySelectorAll("span");
+            blackPieces = document.querySelectorAll("span");
         }
     }
 
@@ -313,12 +311,12 @@ function changeData(indexOfBoardPiece, modifiedIndex, removePiece) {
 // removes the 'onClick' event listeners for pieces
 function removeEventListeners() {
     if (turn) {
-        for (let i = 0; i < redsPieces.length; i++) {
-            redsPieces[i].removeEventListener("click", getPlayerPieces);
+        for (let i = 0; i < redPieces.length; i++) {
+            redPieces[i].removeEventListener("click", getPlayerPieces);
         }
     } else {
-        for (let i = 0; i < blacksPieces.length; i++) {
-            blacksPieces[i].removeEventListener("click", getPlayerPieces);
+        for (let i = 0; i < blackPieces.length; i++) {
+            blackPieces[i].removeEventListener("click", getPlayerPieces);
         }
     }
     checkForWin();
