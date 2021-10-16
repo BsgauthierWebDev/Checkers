@@ -109,7 +109,7 @@ function resetSelectedPieceProperties() {
 
 /* Gets piece ID and index of board location */
 function getSelectedPiece() {
-    selectedPiece.pieceId = parseInt(e.target.id);
+    selectedPiece.pieceId = parseInt(event.target.id);
     selectedPiece.indexOfBoardPiece = findPiece(selectedPiece.pieceId);
     isPieceKing();
 }
