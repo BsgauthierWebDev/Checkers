@@ -204,11 +204,11 @@ td {
 }
 
 .king.red-piece {
-    background-color: orange;
+    background-image: radial-gradient(white, red);
 }
 
 .king.black-piece {
-    background-color: purple;
+    background-image: radial-gradient(white, black);
 }
 
 p {
