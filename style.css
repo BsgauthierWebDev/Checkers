@@ -68,11 +68,11 @@ td {
 }
 
 .king.black-piece {
-    background-color: purple;
+    background-image: radial-gradient(white, black);
 }
 
 .king.red-piece {
-    background-color: yellow;
+    background-image: radial-gradient(white, red);
 }
 
 p {
