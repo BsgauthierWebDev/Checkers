@@ -35,7 +35,7 @@ td {
     background-color: #F0D2B4;
 }
 
-.black-turn {
+.black-turn-text {
     text-align: center;
     color: lightgray;
     font-family: sans-serif;
@@ -51,7 +51,7 @@ td {
     border-radius: 50px;
 }
 
-.red-turn {
+.red-turn-text {
     text-align: center;
     color: black;
     font-family: sans-serif;
@@ -105,11 +105,11 @@ span {
         width: 12vw;
     }
 
-    .black-turn {
+    .black-turn-text {
         font-size: 40px;
     }
 
-    .red-turn {
+    .red-turn-text {
         font-size: 40px;
     }
 
@@ -125,7 +125,7 @@ span {
         display: none;
     }
 
-    .red-turn {
+    .red-turn-text {
         -webkit-transform:rotate(-180deg);
         -moz-transform:rotate(-180deg);
         -o-transform:rotate(-180deg);
