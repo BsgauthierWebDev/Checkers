@@ -66,9 +66,9 @@ function givePiecesEventListeners() {
 // holds the length of the players piece count
 function getPlayerPieces() {
     if (turn) {
-        playerPieces = redsPieces;
+        playerPieces = redPieces;
     } else {
-        playerPieces = blacksPieces;
+        playerPieces = blackPieces;
     }
     removeCellonclick();
     resetBorders();
