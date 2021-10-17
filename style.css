@@ -19,7 +19,7 @@ div {
     display: none;
 }
 
-.computer {
+.desktop {
     margin: 0;
     width: 100%;
 }
@@ -32,21 +32,21 @@ td {
     text-align: center;
     background-color: #BA7A3A;
     width: 65px;
-    height: 65pxh
+    height: 65px;
 }
 
-.black-user-text {
-    text-align: center;
-    color: lightgrey;
-    font-family: sans-serif;
-    font-size: 55px;
-}
-
-.red-user-text {
+.red-turn-text {
     text-align: center;
     color: black;
-    font-family: sans-serif;
+    font-family: "open sans";
     font-size: 55px;
+}
+
+.black-turn-text {
+    text-align: center;
+    font-family: "open sans";
+    font-size: 55px;
+    color: lightgray;
 }
 
 .black-piece {
@@ -67,20 +67,15 @@ td {
     border-radius: 50px;
 }
 
-.king.black-piece {
-    background-image: radial-gradient(white, black);
+.king.red-piece {
+    background-color: orange;
 }
 
-.king.red-piece {
-    background-image: radial-gradient(white, red);
-
+.king.black-piece {
+    background-color: purple;
 }
 
 p {
-    display: inline-block;
-}
-
-span {
     display: inline-block;
 }
 
@@ -90,27 +85,31 @@ span {
     margin-right: 15px;
 }
 
-@media screen and (max-width: 600px) {
-    .black-piece {
-        height: 4.5vw;
-        width: 4.5vw;
-    }
+span {
+    display: inline-block;
+}
 
+@media screen and (max-width: 560px) {
     .red-piece {
         height: 4.5vw;
         width: 4.5vw;
     }
 
-    td {
-        height: 12vw;
-        width: 12vw;
+    .black-piece {
+        height: 4.5vw;
+        width: 4.5vw;
     }
 
-    .black-user-text {
+    td {
+        width: 12vw;
+        height: 12vw;
+    }
+
+    .red-turn-text {
         font-size: 40px;
     }
-
-    .red-user-text {
+    
+    .black-turn-text {
         font-size: 40px;
     }
 
@@ -122,16 +121,15 @@ span {
         display: block;
     }
 
-    .computer {
+    .desktop {
         display: none;
     }
-    
-    /* Turns text upside-down for use on mobile device */
-    .red-user-text {
+
+    .red-turn-text {
         -webkit-transform:rotate(-180deg);
         -moz-transform:rotate(-180deg);
         -o-transform:rotate(-180deg);
         transform:rotate(-180deg);
-        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);  
+        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);    
     }
 }
