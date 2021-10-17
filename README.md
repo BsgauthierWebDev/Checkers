@@ -11,7 +11,7 @@ Checkers game for computer or mobile device. Built to show how JS works with HTM
 
 The board keeps track of players' turns: 
 <hr />
-<img src = 'https://github.com/BsgauthierWebDev/Checkers/blob/master/Images/screenshot-1.jpg'>
+<img src = 'https://github.com/BsgauthierWebDev/Checkers/blob/master/Images/screenshot-1.JPG'>
 
 (Images/screenshot-2.jpg 'Black's Turn')
 
