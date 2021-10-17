@@ -15,6 +15,8 @@ The board keeps track of players' turns:
 
 <img src = 'https://github.com/BsgauthierWebDev/Checkers/blob/master/Images/screenshot-2.JPG' alt = "Black's Turn">
 
+<img src = 'https://github.com/BsgauthierWebDev/Checkers/blob/master/Images/screenshot-5.JPG' alt = "Remaining Pieces Updated">
+
 <hr />
 
 When pieces are Kinged, coloring changes from solid to gradiant: 
