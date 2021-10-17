@@ -351,12 +351,14 @@ function changePlayer() {
         for (let i = 0; i < redUserText.length; i++) {
             redUserText[i].style.color = "lightGrey";
             blackUserText[i].style.color = "black";
+            blackUserText[i].textContent = `Black's Turn Remaining Pieces: ${blackScore}`
         }
     } else {
         turn = true;
         for (let i = 0; i < blackUserText.length; i++) {
             blackUserText[i].style.color = "lightGrey";
-            redUserText[i].style.color = "black";
+            redUserText[i].style.color = "red";
+            redUserText[i].textContent = `Red's Turn Remaining Pieces: ${redScore}`
         }
     }
     checkForWin();
