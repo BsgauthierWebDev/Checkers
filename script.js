@@ -321,7 +321,7 @@ function removeEventListeners() {
             blackPieces[i].removeEventListener("click", getPlayerPieces);
         }
     }
-    checkForWin();
+    changePlayer();
 }
 
 /* Checks for a win */
@@ -341,7 +341,7 @@ function checkForWin() {
             blackUserText[i].textContent = "BLACK WINS!";
         }
     }
-    changePlayer();
+    givePiecesEventListeners();
 }
 
 /* Swaps active player */
@@ -359,7 +359,7 @@ function changePlayer() {
             redUserText[i].style.color = "black";
         }
     }
-    givePiecesEventListeners();
+    checkForWin();
 }
 
 givePiecesEventListeners();
