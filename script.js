@@ -329,7 +329,7 @@ function checkForWin() {
     if (blackScore === 0) {
         divider.style.display = "none";
         for (let i = 0; i < redUserText.length; i++) {
-            redUserText[i].style.color = "black";
+            redUserText[i].style.color = "red";
             blackUserText[i].style.display = "none";
             redUserText[i].textContent = "RED WINS!";
         }
