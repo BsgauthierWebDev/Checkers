@@ -20,12 +20,12 @@ let findPiece = function (pieceId) {
 };
 
 /* DOM References */
-const cells = document.querySelectorAll('td');
-let redPieces = document.querySelectorAll('p');
-let blackPieces = document.querySelectorAll('span');
-const redUserText = document.querySelectorAll('.red-user-text');
-const blackUserText = document.querySelectorAll('.black-user-text');
-const divider = document.querySelector('#divider');
+const cells = document.querySelectorAll("td");
+let redPieces = document.querySelectorAll("p");
+let blackPieces = document.querySelectorAll("span")
+const redUserText = document.querySelectorAll(".red-user-text");
+const blackUserText = document.querySelectorAll(".black-user-text");
+const divider = document.querySelector("#divider")
 
 /* Player Profiles */
 let turn = true;
@@ -41,7 +41,7 @@ let selectedPiece = {
     seventhSpace: false,
     ninthSpace: false,
     fourteenthSpace: false,
-    eighteenthPiece: false,
+    eighteenthSpace: false,
     minusSeventhSpace: false,
     minusNinthSpace: false,
     minusFourteenthSpace: false,
@@ -54,11 +54,11 @@ let selectedPiece = {
 function givePiecesEventListeners() {
     if (turn) {
         for (let i = 0; i < redPieces.length; i++) {
-            redPieces[i].addEventListener('click', getPlayerPieces);
+            redPieces[i].addEventListener("click", getPlayerPieces);
         }
     } else {
         for (let i = 0; i < blackPieces.length; i++) {
-            blackPieces[i].addEventListener('click', getPlayerPieces);
+            blackPieces[i].addEventListener("click", getPlayerPieces);
         }
     }
 }
@@ -72,21 +72,21 @@ function getPlayerPieces() {
     } else {
         playerPieces = blackPieces;
     }
-    removeCellOnClick();
+    removeCellonclick();
     resetBorders();
 }
 
 /* Removes possible moves from old selected piece */
-function removeCellOnClick() {
+function removeCellonclick() {
     for (let i = 0; i < cells.length; i++) {
-        cells[i].removeAttribute('onClick');
+        cells[i].removeAttribute("onclick");
     }
 }
 
 /* Resets borders to default */
 function resetBorders() {
     for (let i = 0; i < playerPieces.length; i++) {
-        playerPieces[i].style.border = '1px solid white';
+        playerPieces[i].style.border = "1px solid white";
     }
     resetSelectedPieceProperties();
     getSelectedPiece();
@@ -100,7 +100,7 @@ function resetSelectedPieceProperties() {
     selectedPiece.seventhSpace = false;
     selectedPiece.ninthSpace = false;
     selectedPiece.fourteenthSpace = false;
-    selectedPiece.eighteenthPiece = false;
+    selectedPiece.eighteenthSpace = false;
     selectedPiece.minusSeventhSpace = false;
     selectedPiece.minusNinthSpace = false;
     selectedPiece.minusFourteenthSpace = false;
@@ -116,7 +116,7 @@ function getSelectedPiece() {
 
 /* Checks if selected piece is Kinged */
 function isPieceKing() {
-    if (document.getElementById(selectedPiece.pieceId).classList.contains('king')) {
+    if (document.getElementById(selectedPiece.pieceId).classList.contains("king")) {
         selectedPiece.isKing = true;
     } else {
         selectedPiece.isKing = false;
@@ -126,68 +126,68 @@ function isPieceKing() {
 
 /* Gets the available moves for the selected piece */
 function getAvailableSpaces() {
-    if (board[selectedPiece.indexOfBoardPiece + 7] === null &&
-        cells[selectedPiece.indexOfBoardPiece + 7].classList.contains('noPieceHere') !== true) {
+    if (board[selectedPiece.indexOfBoardPiece + 7] === null && 
+        cells[selectedPiece.indexOfBoardPiece + 7].classList.contains("noPieceHere") !== true) {
         selectedPiece.seventhSpace = true;
     }
-    if (board[selectedPiece.indexOfBoardPiece + 9] === null &&
-        cells[selectedPiece.indexOfBoardPiece + 9].classList.contains('noPieceHere') !== true) {
+    if (board[selectedPiece.indexOfBoardPiece + 9] === null && 
+        cells[selectedPiece.indexOfBoardPiece + 9].classList.contains("noPieceHere") !== true) {
         selectedPiece.ninthSpace = true;
     }
-    if (board[selectedPiece.indexOfBoardPiece - 7] === null &&
-        cells[selectedPiece.indexOfBoardPiece - 7].classList.contains('noPieceHere') !== true) {
+    if (board[selectedPiece.indexOfBoardPiece - 7] === null && 
+        cells[selectedPiece.indexOfBoardPiece - 7].classList.contains("noPieceHere") !== true) {
         selectedPiece.minusSeventhSpace = true;
     }
-    if (board[selectedPiece.indexOfBoardPiece - 9] === null &&
-        cells[selectedPiece.indexOfBoardPiece - 9].classList.contains('noPieceHere') !== true) {
+    if (board[selectedPiece.indexOfBoardPiece - 9] === null && 
+        cells[selectedPiece.indexOfBoardPiece - 9].classList.contains("noPieceHere") !== true) {
         selectedPiece.minusNinthSpace = true;
     }
-    checkAvailableSpaces();
+    checkAvailableJumpSpaces();
 }
 
 /* Gets the moves selected pieces can make */
 function checkAvailableJumpSpaces() {
     if (turn) {
-        if (board[selectedPiece.indexOfBoardPiece + 14] === null &&
-            cells[selectedPiece.indexOfBoardPiece + 14].classList.contains('noPieceHere') !== true &&
-            board[selectedPiece.indexOfBoardPiece + 7] >= 12) {
-                selectedPiece.fourteenthSpace = true;
-            }
-        if (board[selectedPiece.indexOfBoardPiece + 18] === null &&
-            cells[selectedPiece.indexOfBoardPiece + 18].classList.contains('noPieceHere') !== true &&
-            board[selectedPiece.indexOfBoardPiece + 9] >= 12) {
-                selectedPiece.eighteenthPiece = true;
-            }
-        if (board[selectedPiece.indexOfBoardPiece - 14] === null &&
-            cells[selectedPiece.indexOfBoardPiece - 14].classList.contains('noPieceHere') !== true &&
-            board[selectedPiece.indexOfBoardPiece - 7] >= 12) {
-                selectedPiece.minusFourteenthSpace = true;
-            }
-        if (board[selectedPiece.indexOfBoardPiece - 18] === null &&
-            cells[selectedPiece.indexOfBoardPiece - 18].classList.contains('noPieceHere') !== true &&
-            board[selectedPiece.indexOfBoardPiece - 9] >= 12) {
-                selectedPiece.minusEighteenthSpace = true;
-            }
+        if (board[selectedPiece.indexOfBoardPiece + 14] === null 
+        && cells[selectedPiece.indexOfBoardPiece + 14].classList.contains("noPieceHere") !== true
+        && board[selectedPiece.indexOfBoardPiece + 7] >= 12) {
+            selectedPiece.fourteenthSpace = true;
+        }
+        if (board[selectedPiece.indexOfBoardPiece + 18] === null 
+        && cells[selectedPiece.indexOfBoardPiece + 18].classList.contains("noPieceHere") !== true
+        && board[selectedPiece.indexOfBoardPiece + 9] >= 12) {
+            selectedPiece.eighteenthSpace = true;
+        }
+        if (board[selectedPiece.indexOfBoardPiece - 14] === null 
+        && cells[selectedPiece.indexOfBoardPiece - 14].classList.contains("noPieceHere") !== true
+        && board[selectedPiece.indexOfBoardPiece - 7] >= 12) {
+            selectedPiece.minusFourteenthSpace = true;
+        }
+        if (board[selectedPiece.indexOfBoardPiece - 18] === null 
+        && cells[selectedPiece.indexOfBoardPiece - 18].classList.contains("noPieceHere") !== true
+        && board[selectedPiece.indexOfBoardPiece - 9] >= 12) {
+            selectedPiece.minusEighteenthSpace = true;
+        }
     } else {
-        if (board[selectedPiece.indexOfBoardPiece + 14] === null &&
-            cells[selectedPiece.indexOfBoardPiece + 14].classList.contains('noPieceHere') !== true &&
-            board[selectedPiece.indexOfBoardPiece + 7] < 12 && board[selectedPiece.indexOfBoardPiece + 7] !== null) {
-                selectedPiece.fourteenthSpace = true;
+        if (board[selectedPiece.indexOfBoardPiece + 14] === null 
+        && cells[selectedPiece.indexOfBoardPiece + 14].classList.contains("noPieceHere") !== true
+        && board[selectedPiece.indexOfBoardPiece + 7] < 12 && board[selectedPiece.indexOfBoardPiece + 7] !== null) {
+            selectedPiece.fourteenthSpace = true;
         }
-        if (board[selectedPiece.indexOfBoardPiece + 18] === null &&
-            cells[selectedPiece.indexOfBoardPiece + 18].classList.contains('noPieceHere') !== true &&
-            board[selectedPiece.indexOfBoardPiece + 9] < 12 && board[selectedPiece.indexOfBoardPiece + 9] !== null) {
-                selectedPiece.eighteenthPiece = true;
+        if (board[selectedPiece.indexOfBoardPiece + 18] === null 
+        && cells[selectedPiece.indexOfBoardPiece + 18].classList.contains("noPieceHere") !== true
+        && board[selectedPiece.indexOfBoardPiece + 9] < 12 && board[selectedPiece.indexOfBoardPiece + 9] !== null) {
+            selectedPiece.eighteenthSpace = true;
         }
-        if (board[selectedPiece.indexOfBoardPiece - 14] === null &&
-            cells[selectedPiece.indexOfBoardPiece - 14].classList.contains('noPieceHere') !== true &&
-            board[selectedPiece.indexOfBoardPiece - 7] < 12 && board[selectedPiece.indexOfBoardPiece - 7] !== null) {
-                selectedPiece.minusFourteenthSpace = true;
+        if (board[selectedPiece.indexOfBoardPiece - 14] === null && cells[selectedPiece.indexOfBoardPiece - 14].classList.contains("noPieceHere") !== true
+        && board[selectedPiece.indexOfBoardPiece - 7] < 12 
+        && board[selectedPiece.indexOfBoardPiece - 7] !== null) {
+            selectedPiece.minusFourteenthSpace = true;
         }
-        if (board[selectedPiece.indexOfBoardPiece - 18] === null &&
-            cells[selectedPiece.indexOfBoardPiece - 18].classList.contains('noPieceHere') !== true &&
-            board[selectedPiece.indexOfBoardPiece - 9] < 12 && board[selectedPiece.indexOfBoardPiece - 9] !== null) {
-                selectedPiece.minusEighteenthSpace = true;
+        if (board[selectedPiece.indexOfBoardPiece - 18] === null && cells[selectedPiece.indexOfBoardPiece - 18].classList.contains("noPieceHere") !== true
+        && board[selectedPiece.indexOfBoardPiece - 9] < 12
+        && board[selectedPiece.indexOfBoardPiece - 9] !== null) {
+            selectedPiece.minusEighteenthSpace = true;
         }
     }
     checkPieceConditions();
@@ -196,7 +196,7 @@ function checkAvailableJumpSpaces() {
 /* Changes direction of movement if piece is King */
 function checkPieceConditions() {
     if (selectedPiece.isKing) {
-        givePiecesBorder();
+        givePieceBorder();
     } else {
         if (turn) {
             selectedPiece.minusSeventhSpace = false;
@@ -207,7 +207,7 @@ function checkPieceConditions() {
             selectedPiece.seventhSpace = false;
             selectedPiece.ninthSpace = false;
             selectedPiece.fourteenthSpace = false;
-            selectedPiece.eighteenthPiece = false;
+            selectedPiece.eighteenthSpace = false;
         }
         givePieceBorder();
     }
@@ -215,9 +215,9 @@ function checkPieceConditions() {
 
 /* Gives active piece green border */
 function givePieceBorder() {
-    if (selectedPiece.seventhSpace || selectedPiece.ninthSpace || selectedPiece.fourteenthSpace || selectedPiece.eighteenthPiece
+    if (selectedPiece.seventhSpace || selectedPiece.ninthSpace || selectedPiece.fourteenthSpace || selectedPiece.eighteenthSpace
     || selectedPiece.minusSeventhSpace || selectedPiece.minusNinthSpace || selectedPiece.minusFourteenthSpace || selectedPiece.minusEighteenthSpace) {
-        document.getElementById(selectedPiece.pieceId).style.border = '3px solid green';
+        document.getElementById(selectedPiece.pieceId).style.border = "3px solid green";
         giveCellsClick();
     } else {
         return;
@@ -227,28 +227,28 @@ function givePieceBorder() {
 /* Gives cells on the board a 'click' based on possible moves */
 function giveCellsClick() {
     if (selectedPiece.seventhSpace) {
-        cells[selectedPiece.indexOfBoardPiece + 7].setAttribute('onClick', 'makeMove(7)');
+        cells[selectedPiece.indexOfBoardPiece + 7].setAttribute("onclick", "makeMove(7)");
     }
     if (selectedPiece.ninthSpace) {
-        cells[selectedPiece.indexOfBoardPiece + 9].setAttribute('onClick', 'makeMove(9)');
+        cells[selectedPiece.indexOfBoardPiece + 9].setAttribute("onclick", "makeMove(9)");
     }
     if (selectedPiece.fourteenthSpace) {
-        cells[selectedPiece.indexOfBoardPiece + 14].setAttribute('onClick', 'makeMove(14)');
+        cells[selectedPiece.indexOfBoardPiece + 14].setAttribute("onclick", "makeMove(14)");
     }
-    if (selectedPiece.eighteenthPiece) {
-        cells[selectedPiece.indexOfBoardPiece + 18].setAttribute('onClick', 'makeMove(18)');
+    if (selectedPiece.eighteenthSpace) {
+        cells[selectedPiece.indexOfBoardPiece + 18].setAttribute("onclick", "makeMove(18)");
     }
     if (selectedPiece.minusSeventhSpace) {
-        cells[selectedPiece.indexOfBoardPiece - 7].setAttribute('onClick', 'makeMove(-7)');
+        cells[selectedPiece.indexOfBoardPiece - 7].setAttribute("onclick", "makeMove(-7)");
     }
     if (selectedPiece.minusNinthSpace) {
-        cells[selectedPiece.indexOfBoardPiece - 9].setAttribute('onClick', 'makeMove(-9)');
+        cells[selectedPiece.indexOfBoardPiece - 9].setAttribute("onclick", "makeMove(-9)");
     }
     if (selectedPiece.minusFourteenthSpace) {
-        cells[selectedPiece.indexOfBoardPiece - 14].setAttribute('onClick', 'makeMove(-14)');
+        cells[selectedPiece.indexOfBoardPiece - 14].setAttribute("onclick", "makeMove(-14)");
     }
     if (selectedPiece.minusEighteenthSpace) {
-        cells[selectedPiece.indexOfBoardPiece - 18].setAttribute('onClick', 'makeMove(-18)');
+        cells[selectedPiece.indexOfBoardPiece - 18].setAttribute("onclick", "makeMove(-18)");
     }
 }
 
@@ -257,22 +257,22 @@ function giveCellsClick() {
 /* Makes move to space that was clicked */
 function makeMove(number) {
     document.getElementById(selectedPiece.pieceId).remove();
-    cells[selectedPiece.indexOfBoardPiece].innerHTML = '';
+    cells[selectedPiece.indexOfBoardPiece].innerHTML = "";
     if (turn) {
         if (selectedPiece.isKing) {
-            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class ="red-piece king" id = "${selectedPiece.pieceId}"></p>`;
-            redPieces = document.querySelectorAll('p');
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class="red-piece king" id="${selectedPiece.pieceId}"></p>`;
+            redPieces = document.querySelectorAll("p");
         } else {
-            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class = "red-piece" id = "${selectedPiece.pieceId}"></p>`;
-            redPieces = document.querySelectorAll('p');
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class="red-piece" id="${selectedPiece.pieceId}"></p>`;
+            redPieces = document.querySelectorAll("p");
         }
     } else {
         if (selectedPiece.isKing) {
-            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class ="black-piece king" id = "${selectedPiece.pieceId}"></span>`;
-            blackPieces = document.querySelectorAll('span');
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class="black-piece king" id="${selectedPiece.pieceId}"></span>`;
+            blackPieces = document.querySelectorAll("span");
         } else {
-            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class = "black-piece" id = "${selectedPiece.pieceId}"></span>`;
-            blackPieces = document.querySelectorAll('span');
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class="black-piece" id="${selectedPiece.pieceId}"></span>`;
+            blackPieces = document.querySelectorAll("span");
         }
     }
 
@@ -289,24 +289,24 @@ function changeData(indexOfBoardPiece, modifiedIndex, removePiece) {
     board[indexOfBoardPiece] = null;
     board[modifiedIndex] = parseInt(selectedPiece.pieceId);
     if (turn && selectedPiece.pieceId < 12 && modifiedIndex >= 57) {
-        document.getElementById(selectedPiece.pieceId).classList.add('king')
+        document.getElementById(selectedPiece.pieceId).classList.add("king")
     }
     if (turn === false && selectedPiece.pieceId >= 12 && modifiedIndex <= 7) {
-        document.getElementById(selectedPiece.pieceId).classList.add('king');
+        document.getElementById(selectedPiece.pieceId).classList.add("king");
     }
     if (removePiece) {
         board[removePiece] = null;
         if (turn && selectedPiece.pieceId < 12) {
-            cells[removePiece].innerHTML = '';
+            cells[removePiece].innerHTML = "";
             blackScore--
         }
         if (turn === false && selectedPiece.pieceId >= 12) {
-            cells[removePiece].innerHTML = '';
+            cells[removePiece].innerHTML = "";
             redScore--
         }
     }
     resetSelectedPieceProperties();
-    removeCellOnClick();
+    removeCellonclick();
     removeEventListeners();
 }
 
@@ -314,11 +314,11 @@ function changeData(indexOfBoardPiece, modifiedIndex, removePiece) {
 function removeEventListeners() {
     if (turn) {
         for (let i = 0; i < redPieces.length; i++) {
-            redPieces[i].removeEventListener('click', getPlayerPieces);
+            redPieces[i].removeEventListener("click", getPlayerPieces);
         }
     } else {
         for (let i = 0; i < blackPieces.length; i++) {
-            blackPieces[i].removeEventListener('click', getPlayerPieces);
+            blackPieces[i].removeEventListener("click", getPlayerPieces);
         }
     }
     checkForWin();
@@ -327,18 +327,18 @@ function removeEventListeners() {
 /* Checks for a win */
 function checkForWin() {
     if (blackScore === 0) {
-        divider.style.display = 'none';
+        divider.style.display = "none";
         for (let i = 0; i < redUserText.length; i++) {
-            redUserText[i].style.color = 'black';
-            blackUserText[i].style.display = 'none';
-            redUserText[i].textContent = 'RED WINS!!!';
+            redUserText[i].style.color = "black";
+            blackUserText[i].style.display = "none";
+            redUserText[i].textContent = "RED WINS!";
         }
     } else if (redScore === 0) {
-        divider.style.display = 'none';
-        for (let i = 0; i < blackUserText.length; i++) {
-            blackUserText[i].style.color = 'black';
-            redUserText[i].style.display = 'none';
-            blackUserText[i].textContent = 'BLACK WINS!!!';
+        divider.style.display = "none";
+        for (let i = 0; i < blackUserText.length; i++) {            
+            blackUserText[i].style.color = "black";
+            redUserText[i].style.display = "none";
+            blackUserText[i].textContent = "BLACK WINS!";
         }
     }
     changePlayer();
@@ -349,14 +349,14 @@ function changePlayer() {
     if (turn) {
         turn = false;
         for (let i = 0; i < redUserText.length; i++) {
-            redUserText[i].style.color = 'lightgrey';
-            blackUserText[i].style.color = 'black';
+            redUserText[i].style.color = "lightGrey";
+            blackUserText[i].style.color = "black";
         }
     } else {
         turn = true;
         for (let i = 0; i < blackUserText.length; i++) {
-            blackUserText[i].style.color = 'lightgrey';
-            redUserText.style.color = 'black';
+            blackUserText[i].style.color = "lightGrey";
+            redUserText[i].style.color = "black";
         }
     }
     givePiecesEventListeners();
